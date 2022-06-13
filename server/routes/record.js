@@ -12,7 +12,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 // ------------ make an API -------------
 // get all records
-recordRoutes.route("/").get((req, res) => {
+recordRoutes.route("/records").get((req, res) => {
     let db_connect = dbo.getDb("employees");
     db_connect
         .collection("records")
