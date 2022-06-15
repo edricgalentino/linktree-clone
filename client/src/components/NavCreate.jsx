@@ -16,7 +16,7 @@ function NavCreate() {
             <button className="icon hover:bg-emerald-400 relative lg:hover:ml-2 transition-all p-3 rounded-full drop-shadow-lg">
                 <IoMdColorPalette size={"34px"} />
             </button>
-            <button className="icon bg-emerald-400 relative lg:hover:ml-2 transition-all p-3 rounded-full  hover:drop-shadow-xl">
+            <button className="icon bg-emerald-400 relative lg:hover:ml-2 transition-all p-3 rounded-full  hover:drop-shadow-xl" onClick={() => {}}>
                 <GrAdd size={"34px"} color="white" />
             </button>
         </nav>
