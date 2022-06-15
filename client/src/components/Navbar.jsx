@@ -18,8 +18,8 @@ function Navbar() {
 
     return (
         <React.Fragment>
-            <nav className="nav">
-                <div className="fixed w-full bg-emerald-300 font-poppins py-5 px-6 lg:px-12 z-30 flex justify-between items-center">
+            <nav className="nav flex justify-center ">
+                <div className="fixed w-11/12 bg-emerald-300 font-poppins rounded-full py-5 px-6 lg:px-12 z-30 flex justify-between items-center">
                     <div className="title">
                         <h1 className="text-xl font-semibold">myLinktree</h1>
                     </div>
