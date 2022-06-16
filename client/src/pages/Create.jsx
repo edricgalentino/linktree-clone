@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 // component
-import NavCreate from "../components/NavCreate";
 import LinktreeLink from "../components/LinktreeLink";
 import SortableComponent from "../components/SortableComponent";
-import BubblePrototype from "../components/BubblePrototype";
 
 import { BsFillPersonFill } from "react-icons/bs";
 import { GrAdd } from "react-icons/gr";
@@ -28,10 +26,12 @@ const Home = () => {
     const [descriptionProfile, setDescriptionProfile] = useState("");
     const [avatarProfile, setAvatarProfile] = useState("");
 
-    const [showInfo, setShowInfo] = useState(false);
+    const [choosenTheme, setChoosenTheme] = useState({});
+    const [isDark, setIsDark] = useState(false);
+
     return (
         <>
-            <main className="flex justify-end">
+            <main className="flex justify-end bg-slate-100">
                 <nav className=" lg:w-20 lg:h-96 w-full h-20 rounded-full flex lg:flex-col lg:gap-3 z-50 fixed lg:left-6 lg:top-24 lg:mt-0 mt-96 top-80 lg:justify-center justify-evenly items-center p-5 drop-shadow-lg bg-white">
                     <button
                         onClick={() => {
@@ -86,7 +86,7 @@ const Home = () => {
                     <div className="draggable lg:w-2/3 w-full lg:border-r-2 lg:border-b-0 border-b-2 border-black min-h-screen flex justify-center bg-slate-200 items-center">
                         <div className={`${active === "home" ? "" : "hidden"} container home lg:w-2/3 w-11/12 min-h-screen bg-slate-200 flex flex-col gap-4 lg:pb-12 pb-10`}>
                             <LinktreeLink />
-                            <SortableComponent showInfo={showInfo} setShowInfo={(info) => setShowInfo(info)} linksValue={linksValue} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} />
+                            <SortableComponent linksValue={linksValue} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} />
                         </div>
                         <div className={`${active === "appearrance" ? "" : "hidden"} container appearrance lg:w-2/3 w-11/12 min-h-screen bg-slate-200 flex flex-col gap-4 lg:pb-12 pb-10`}>
                             <LinktreeLink />
@@ -94,15 +94,15 @@ const Home = () => {
                         </div>{" "}
                         <div className={`${active === "theme" ? "" : "hidden"} container background lg:w-2/3 w-11/12 min-h-screen bg-slate-200 flex flex-col gap-4 lg:pb-12 pb-10`}>
                             <LinktreeLink />
-                            <Theme />
-                        </div>{" "}
+                            <Theme setChoosenTheme={(value) => setChoosenTheme(value)} isDark={isDark} setIsDark={(e) => setIsDark(e)} />
+                        </div>
                         <div className={`${active === "background" ? "" : "hidden"} container theme lg:w-2/3 w-11/12 min-h-screen bg-slate-200 flex flex-col gap-4 lg:pb-12 pb-10`}>
                             <LinktreeLink />
                             background
                         </div>
                     </div>
                     <div className="lg:w-1/3 w-full min-h-screen flex justify-start lg:pt-44 py-8 flex-col bg-slate-200 items-center">
-                        <PrototypeMobile titleProfile={titleProfile} descriptionProfile={descriptionProfile} linksValue={linksValue} />
+                        <PrototypeMobile dark={isDark} choosenTheme={choosenTheme} titleProfile={titleProfile} descriptionProfile={descriptionProfile} linksValue={linksValue} />
                     </div>
                 </section>
             </main>
