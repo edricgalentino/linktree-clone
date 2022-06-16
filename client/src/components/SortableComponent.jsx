@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { SortableContainer, SortableElement, arrayMove } from "react-sortable-hoc";
 import { HiDotsVertical } from "react-icons/hi";
 import { MdOutlineDragIndicator } from "react-icons/md";
+import Info from "./Info";
 
-const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue, showInfo, setShowInfo }) => {
-    console.log(showInfo);
+const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) => {
+    const [showInfo, setShowInfo] = useState(false);
+
     return (
-        <div className="content w-full py-3 drop-shadow-xl rounded-xl bg-white items-center flex justify-between">
-            <button className="drag-button handle p-3 hover:cursor-default">
+        <div className="content w-full py-3 hover:cursor-grab active:cursor-grabbing focus:cursor-grabbing drop-shadow-xl rounded-xl bg-white items-center flex justify-between">
+            <span className="drag-button p-3">
                 <MdOutlineDragIndicator size={"24px"} />
-            </button>
+            </span>
             <div className="text-link">
                 <form action="post" className="flex gap-3 justify-start items-start text-start">
                     <label>
@@ -41,57 +43,29 @@ const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue, sho
                     </label>
                 </form>
             </div>
-            <button
-                className="info hover:bg-gray-200 drop-shadow-lg p-3 mx-3 z-20 rounded-full"
-                onClick={() => {
-                    setShowInfo(!showInfo);
-                }}
-            >
-                <HiDotsVertical size={"20px"} />
+            <button onClick={() => setShowInfo(!showInfo)} className={` relative hover:bg-gray-200 transition-all p-3 mx-3 rounded-full drop-shadow-lg`}>
+                <HiDotsVertical size={"20px"} onClick={() => setShowInfo(!showInfo)} />
             </button>
-            <div className={` ${showInfo ? "flex" : "hidden"} info bg-black w-40 text-white font-semibold py-2 absolute ml-96 left-72 bottom-0 rounded-md flex justify-start items-start`}>
-                <ul className=" decoration-transparent w-full ">
-                    <li className="hover:bg-white hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer">Border</li>
-                    <li
-                        className="hover:bg-white hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer"
-                        onClick={() => {
-                            const newLinksValue = [...array];
-                            newLinksValue.splice(I, 1);
-                            setLinksValue(newLinksValue);
-                        }}
-                    >
-                        Delete
-                    </li>
-                </ul>
-            </div>
+            <Info index={I} linksValue={linksValue} showInfo={showInfo} setShowInfo={(value) => setShowInfo(value)} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} array={array} />
         </div>
     );
 });
-const SortableList = SortableContainer(({ linksValue, setLinksValue, showInfo, setShowInfo }) => {
+const SortableList = SortableContainer(({ linksValue, setLinksValue }) => {
     return (
-        <div className="bg-slate-200 w-full min-h-screen flex flex-col gap-3">
+        <div className="bg-slate-200 w-full min-h-screen flex flex-col gap-3 active:cursor-grabbing">
             {linksValue.map((value, index) => (
-                <SortableItem
-                    key={`item-${index}`}
-                    I={index}
-                    index={index}
-                    showInfo={showInfo}
-                    setShowInfo={(info) => setShowInfo(info)}
-                    array={linksValue}
-                    setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)}
-                    linksValue={value}
-                />
+                <SortableItem key={`item-${index}`} I={index} index={index} array={linksValue} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} linksValue={value} />
             ))}
         </div>
     );
 });
-function SortableComponent({ linksValue, setLinksValue, showInfo, setShowInfo }) {
+function SortableComponent({ linksValue, setLinksValue }) {
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setLinksValue(arrayMove(linksValue, oldIndex, newIndex));
     };
     return (
         <div>
-            <SortableList linksValue={linksValue} showInfo={showInfo} setShowInfo={(info) => setShowInfo(info)} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} onSortEnd={onSortEnd} />
+            <SortableList linksValue={linksValue} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} onSortEnd={onSortEnd} />
         </div>
     );
 }
