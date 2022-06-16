@@ -35,7 +35,7 @@ function Navbar() {
                         </button>
                     </div>
                 </div>
-                <div className={`${isNavbarMobileOpen ? "  transition-all" : " ml-96 left-32 opacity-0 z-0 transition-all"} lg:hidden z-50 transition-all mobile-nav fixed w-full h-screen bg-emerald-300 font-poppins py-5 px-6  `}>
+                <div className={`${isNavbarMobileOpen ? "  transition-all" : " ml-96 left-32 opacity-0 z-0 transition-all"} lg:hidden z-50 transition-all mobile-nav fixed w-full h-screen bg-emerald-300 font-poppins py-5 px-11  `}>
                     <div className="flex justify-between items-center">
                         <div className="title">
                             <h1 className="text-xl font-semibold">myLinktree</h1>
