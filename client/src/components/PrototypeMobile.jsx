@@ -3,9 +3,9 @@ import BubblePrototype from "./BubblePrototype";
 
 function PrototypeMobile({ titleProfile, descriptionProfile, linksValue, choosenTheme, avatarProfile, dark }) {
     return (
-        <div className={`resizable w-72 ${dark ? "bg-gray-800" : "bg-white"} font-poppins h-120 overflow-y-auto flex py-7 flex-col justify-between gap-4 items-center border-8 rounded-3xl ${dark ? "border-gray-500" : "border-gray-500"}`}>
+        <div className={`resizable w-72 ${dark ? "bg-gray-800" : "bg-white"} overflow-x-hidden font-poppins h-120 overflow-y-auto flex py-7 flex-col justify-between gap-4 items-center border-8 rounded-3xl border-gray-500`}>
             <section className="profile relative flex justify-center flex-col">
-                <div className={`container w-1/3  ${!dark ? "bg-gray-800" : "bg-white"} border-4 border-black rounded-full mx-auto`}>
+                <div className={`container w-1/3 bg-gray-500 border-4 border-gray-500 rounded-full mx-auto`}>
                     <img className=" bg-slate-200 rounded-full" src="defaultPict.jpeg" alt="user" />
                 </div>
                 <div className="name mt-3">
