@@ -8,7 +8,7 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 function SliderComponent({ dark, setChoosenTheme }) {
     function NextArrow(props) {
         const { onClick } = props;
-        return <GrFormNext onClick={onClick} className="z-30 relative left-96 ml-48 bottom-28 hover:cursor-pointer" />;
+        return <GrFormNext onClick={onClick} className="z-30 relative left-96 lg:ml-48 bottom-28 hover:cursor-pointer" />;
     }
 
     function PrevArrow(props) {
@@ -16,7 +16,6 @@ function SliderComponent({ dark, setChoosenTheme }) {
         return <GrFormPrevious onClick={onClick} className="z-30 relative right-6 top-28 hover:cursor-pointer" />;
     }
     let settings = {
-        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
@@ -25,27 +24,18 @@ function SliderComponent({ dark, setChoosenTheme }) {
         prevArrow: <PrevArrow />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 600,
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: true,
-                    dots: true,
-                },
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2,
+                    initialSlide: 3,
                 },
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                 },
             },
         ],
@@ -124,7 +114,7 @@ function SliderComponent({ dark, setChoosenTheme }) {
                                 );
                                 setChoosenTheme(data[index]);
                             }}
-                            className={`theme w-28 border-8 py-3 border-slate-100 h-52 relative transition-all rounded-2xl ${dark ? "bg-gray-800" : "bg-white"}`}
+                            className={`theme w-28 hover:cursor-pointer border-8 py-3 border-slate-100 h-52 relative transition-all rounded-2xl ${dark ? "bg-gray-800" : "bg-white"}`}
                         >
                             <section className="profile relative flex justify-center flex-col">
                                 <div className="container w-1/4  bg-black  rounded-full mx-auto">
@@ -133,13 +123,13 @@ function SliderComponent({ dark, setChoosenTheme }) {
                             </section>
                             {item.isChoosen ? <AiFillCheckCircle className={` absolute text-emerald-400 w-6 h-6 top-1.5 right-1.5`} /> : ""}
                             <section className="main-content flex justify-center items-center flex-col w-full px-3 gap-2 my-7">
-                                <div className={`bubble w-full h-3 ${item.bgBubble} rounded-lg`}>
+                                <div className={`bubble w-full items-center h-3 ${item.bgBubble} rounded-lg`}>
                                     <p className={`text-xs ${item.textColor}`}>-----</p>
                                 </div>
-                                <div className={`bubble w-full h-3 ${item.bgBubble} rounded-lg`}>
+                                <div className={`bubble w-full items-center h-3 ${item.bgBubble} rounded-lg`}>
                                     <p className={`text-xs ${item.textColor}`}>-----</p>
                                 </div>
-                                <div className={`bubble w-full h-3 ${item.bgBubble} rounded-lg`}>
+                                <div className={`bubble w-full items-center h-3 ${item.bgBubble} rounded-lg`}>
                                     <p className={`text-xs ${item.textColor}`}>-----</p>
                                 </div>
                             </section>
