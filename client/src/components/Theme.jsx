@@ -6,7 +6,7 @@ function Theme({ setChoosenTheme, isDark, setIsDark }) {
         <>
             <h1 className=" text-lg text-left font-semibold">Available Themes</h1>
             <div className="content w-full drop-shadow-xl rounded-xl bg-slate-100 items-center text-slate-700 flex flex-col gap-3 p-5 py-6 justify-start">
-                <div className="free flex justify-start items-start gap-4 flex-col">
+                <div className="free flex justify-start items-start gap-1 flex-col">
                     <div className="flex w-full gap-3 items-center justify-between">
                         <span className=" text-lg text-left font-semibold">Free</span>
                         <span
@@ -18,11 +18,11 @@ function Theme({ setChoosenTheme, isDark, setIsDark }) {
                             Mode : {!isDark ? <BsSun className="ml-3" /> : <BsFillMoonStarsFill className="ml-3" />}
                         </span>
                     </div>
-                    <div className="slider mb-8" style={{ maxWidth: "36rem" }}>
+                    <div className="slider lg:w-120 w-96">
                         <SliderComponent dark={isDark} setChoosenTheme={(e) => setChoosenTheme(e)} />
                     </div>
                 </div>
-                <div className="paid flex justify-start items-start gap-4 flex-col">
+                <div className="paid flex justify-start items-start gap-1 flex-col">
                     <div className="flex w-full gap-3 items-center justify-between">
                         <span className=" text-lg text-left font-semibold">Paid</span>
                         <span
@@ -34,7 +34,7 @@ function Theme({ setChoosenTheme, isDark, setIsDark }) {
                             Mode : {!isDark ? <BsSun className="ml-3" /> : <BsFillMoonStarsFill className="ml-3" />}
                         </span>
                     </div>
-                    <div className="slider mb-8" style={{ maxWidth: "36rem" }}>
+                    <div className="slider lg:w-120 w-96">
                         <SliderComponent dark={isDark} setChoosenTheme={(e) => setChoosenTheme(e)} />
                     </div>
                 </div>
