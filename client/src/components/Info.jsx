@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-
+import { BsTrash } from "react-icons/bs";
+import { RiCheckboxBlankLine } from "react-icons/ri";
 function Info({ index, showInfo, setShowInfo, linksValue, setLinksValue, array }) {
     const handleDelete = () => {
         Swal.fire({
@@ -25,14 +26,20 @@ function Info({ index, showInfo, setShowInfo, linksValue, setLinksValue, array }
         <div className={` ${showInfo ? "flex" : "hidden"} info bg-black w-40 text-white font-semibold py-2 absolute lg:ml-96 lg:left-72 left-52 bottom-0 rounded-md flex justify-start items-start`}>
             <ul className=" decoration-transparent w-full z-10 ">
                 <span className=" absolute bg-black w-5 h-5 rotate-45 lg:-left-2 bottom-9 -z-10 -right-2"></span>
-                <li className="hover:bg-white hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer">Border</li>
+                <li>
+                    <button className="hover:bg-white flex items-center hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer">
+                        <RiCheckboxBlankLine size={"20px"} className="mr-2" />
+                        Border
+                    </button>
+                </li>
                 <li>
                     <button
                         onClick={() => {
                             handleDelete();
                         }}
-                        className="hover:bg-white hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer"
+                        className="hover:bg-white flex items-center hover:text-black px-3 py-2 w-full text-start hover:cursor-pointer"
                     >
+                        <BsTrash size={"20px"} className="mr-2" />
                         Delete
                     </button>
                 </li>
