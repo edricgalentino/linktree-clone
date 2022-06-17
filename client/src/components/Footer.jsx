@@ -13,7 +13,7 @@ function Link({ className, text, href }) {
 function Footer() {
     return (
         <React.Fragment>
-            <footer className="footer bg-slate-50">
+            <footer className="footer bg-slate-100">
                 <div className="font-poppins footer">
                     <footer className="pt-20 mx-auto w-full">
                         <div className="grid gap-16 lg:mx-12 text-center lg:text-left lg:grid-cols-12">
