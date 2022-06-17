@@ -52,7 +52,7 @@ const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) =
 });
 const SortableList = SortableContainer(({ linksValue, setLinksValue }) => {
     return (
-        <div className="bg-slate-200 w-full min-h-screen flex flex-col gap-3 active:cursor-grabbing">
+        <div className="bg-slate-100 w-full min-h-screen flex flex-col gap-3 active:cursor-grabbing">
             {linksValue.map((value, index) => (
                 <SortableItem key={`item-${index}`} I={index} index={index} array={linksValue} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} linksValue={value} />
             ))}
