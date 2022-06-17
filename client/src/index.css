@@ -10,6 +10,9 @@
     .h-120 {
         height: 33rem;
     }
+    .w-120 {
+        width: 36rem;
+    }
 
     .bg-gradient-footer {
         background: linear-gradient(343.57deg, #1d3152 0%, #0f264d 23.8%, #101c30 42.57%, #0f172a 63.76%, #0f172a 69.62%);
