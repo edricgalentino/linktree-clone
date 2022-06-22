@@ -25,17 +25,17 @@ function Theme({ setChoosenTheme, isDark, setIsDark }) {
                 <div className="paid flex justify-start items-start gap-1 flex-col">
                     <div className="flex w-full gap-3 items-center justify-between">
                         <span className=" text-lg text-left font-semibold">Paid</span>
-                        <span
+                        {/* <span
                             className=" text-lg text-left flex items-center cursor-pointer font-semibold"
                             onClick={() => {
                                 setIsDark(!isDark);
                             }}
                         >
                             Mode : {!isDark ? <BsSun className="ml-3" /> : <BsFillMoonStarsFill className="ml-3" />}
-                        </span>
+                        </span> */}
                     </div>
                     <div className="slider lg:w-120 w-96">
-                        <SliderComponent dark={isDark} setChoosenTheme={(e) => setChoosenTheme(e)} />
+                        <p className="text-lg">Unavailable for now.</p>
                     </div>
                 </div>
             </div>
