@@ -13,6 +13,9 @@ import PrototypeMobile from "../components/PrototypeMobile";
 import Background from "../components/Background";
 import Theme from "../components/Theme";
 
+// import axios
+import axios from "axios";
+
 const Home = () => {
     const [linksValue, setLinksValue] = useState([
         {
@@ -26,9 +29,36 @@ const Home = () => {
     const [titleProfile, setTitleProfile] = useState("");
     const [descriptionProfile, setDescriptionProfile] = useState("");
     const [avatarProfile, setAvatarProfile] = useState("");
-
     const [choosenTheme, setChoosenTheme] = useState({});
     const [isDark, setIsDark] = useState(false);
+    const [data, setData] = useState([]);
+    const [username, setUsername] = useState("edric");
+
+    useEffect(() => {
+        axios
+            .get(`http://localhost:5000/${username}`)
+            .then((res) => {
+                setData(res.data);
+                setLinksValue(res.data.links);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [username]);
+
+    const handleAddLink = () => {
+        axios
+            .put(`http://localhost:5000/${username}/add-link`, {
+                link: { title: "", link: "https://" },
+            })
+            .then((res) => {
+                console.log(res.data);
+                setLinksValue(res.data.links);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <>
@@ -61,15 +91,7 @@ const Home = () => {
                     <button
                         className={`${active === "home" ? "" : "cursor-not-allowed"} icon bg-emerald-400 relative lg:hover:ml-2 transition-all p-3 rounded-full  hover:drop-shadow-xl`}
                         onClick={() => {
-                            setLinksValue([
-                                ...linksValue,
-                                {
-                                    link: {
-                                        title: "",
-                                        link: "https://",
-                                    },
-                                },
-                            ]);
+                            handleAddLink();
                         }}
                     >
                         <GrAdd size={"34px"} color="white" />
