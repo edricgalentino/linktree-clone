@@ -6,7 +6,6 @@ import Info from "./Info";
 
 const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) => {
     const [showInfo, setShowInfo] = useState(false);
-
     return (
         <div className="content w-full py-3 hover:cursor-grab active:cursor-grabbing focus:cursor-grabbing drop-shadow-xl rounded-xl bg-white items-center flex justify-between">
             <span className="drag-button p-3">
@@ -17,7 +16,7 @@ const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) =
                     <label>
                         Title
                         <input
-                            value={linksValue.link.title === undefined ? "" : linksValue.link.title}
+                            value={linksValue.title === undefined ? "" : linksValue.title}
                             onChange={(e) => {
                                 const newLinksValue = [...array];
                                 newLinksValue[I].link.title = e.target.value;
@@ -31,7 +30,7 @@ const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) =
                     <label>
                         Link
                         <input
-                            value={linksValue.link.link === undefined ? "" : linksValue.link.link}
+                            value={linksValue.link !== "https://" ? linksValue.link.link : linksValue.link}
                             onChange={(e) => {
                                 const newLinksValue = [...array];
                                 newLinksValue[I].link.link = e.target.value;
@@ -43,8 +42,8 @@ const SortableItem = SortableElement(({ I, array, linksValue, setLinksValue }) =
                     </label>
                 </form>
             </div>
-            <button onClick={() => setShowInfo(!showInfo)} className={` relative hover:bg-gray-200 transition-all p-3 mx-3 rounded-full drop-shadow-lg`}>
-                <HiDotsVertical size={"20px"} onClick={() => setShowInfo(!showInfo)} />
+            <button onClick={() => setShowInfo(!showInfo)} className={`relative hover:bg-gray-200 transition-all p-3 mx-3 z-30 rounded-full drop-shadow-lg`}>
+                <HiDotsVertical size={"20px"} className={` -z-20`} onClick={() => setShowInfo(!showInfo)} />
             </button>
             <Info index={I} linksValue={linksValue} showInfo={showInfo} setShowInfo={(value) => setShowInfo(value)} setLinksValue={(newLinksValue) => setLinksValue(newLinksValue)} array={array} />
         </div>
