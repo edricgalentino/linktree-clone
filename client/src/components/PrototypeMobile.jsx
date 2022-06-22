@@ -17,7 +17,7 @@ function PrototypeMobile({ titleProfile, descriptionProfile, linksValue, choosen
             </section>
             <section className="main-content flex justify-center items-center flex-col w-52 gap-3 my-7">
                 {linksValue.map((link, index) => (
-                    <BubblePrototype choosenTheme={choosenTheme} key={index} link={link.link.link} title={link.link.title} />
+                    <BubblePrototype choosenTheme={choosenTheme} key={index} link={link.link.link !== null || link.link.link !== undefined ? link.link.link : link.link} title={link.title === undefined ? "" : link.title} />
                 ))}
             </section>
             <footer>
