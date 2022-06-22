@@ -11,52 +11,53 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 // ------------ make an API -------------
-// get all records
-recordRoutes.route("/records").get((req, res) => {
-    let db_connect = dbo.getDb("employees");
-    db_connect
-        .collection("records")
-        .find({})
-        .toArray((err, records) => {
-            if (err) throw err;
-            res.json(records);
-        });
+
+recordRoutes.route("/:username").get((req, res) => {
+    let db_connect = dbo.getDb();
+    db_connect.collection("user").findOne({ username: req.params.username }, (err, record) => {
+        if (err) throw err;
+        res.json(record);
+    });
 });
 
-recordRoutes.route("/:id").get((req, res) => {
+recordRoutes.route("/:username/add-link").put((req, res) => {
     let db_connect = dbo.getDb();
-    db_connect.collection("records").findOne({ _id: ObjectId(req.params.id) }, (err, record) => {
-        if (err) throw err;
-        res.json(record);
-    });
+    let myquery = { username: req.params.username };
+    db_connect.collection("user").updateOne(
+        myquery,
+        {
+            $push: {
+                links: req.body.link,
+            },
+        },
+        (err, record) => {
+            if (err) throw err;
+            db_connect.collection("user").findOne({ username: req.params.username }, (err, record) => {
+                if (err) throw err;
+                res.json(record);
+            });
+        }
+    );
 });
-recordRoutes.route("/add").post((req, res) => {
+
+recordRoutes.route("/:username/delete-link").put((req, res) => {
     let db_connect = dbo.getDb();
-    let obj = {
-        name: req.body.name,
-        age: req.body.age,
-        city: req.body.city,
-    };
-    db_connect.collection("records").insertOne(obj, (err, record) => {
-        if (err) throw err;
-        res.json(record);
-    });
-});
-recordRoutes.route("/update/:id").put((req, res) => {
-    let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("records").updateOne(myquery, { $set: { name: req.body.name, age: req.body.age, city: req.body.city } }, (err, record) => {
-        if (err) throw err;
-        res.send("1 record updated");
-    });
-});
-recordRoutes.route("/:id").delete((req, res) => {
-    let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
-    db_connect.collection("records").deleteOne(myquery, (err, record) => {
-        if (err) throw err;
-        res.send("1 record deleted");
-    });
+    let myquery = { username: req.params.username };
+    db_connect.collection("user").updateOne(
+        myquery,
+        {
+            $set: {
+                links: req.body,
+            },
+        },
+        (err, record) => {
+            if (err) throw err;
+            db_connect.collection("user").findOne({ username: req.params.username }, (err, record) => {
+                if (err) throw err;
+                res.json(record);
+            });
+        }
+    );
 });
 
 module.exports = recordRoutes;
