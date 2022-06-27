@@ -30,6 +30,7 @@ const Home = () => {
     const [choosenTheme, setChoosenTheme] = useState({});
     const [isDark, setIsDark] = useState(false);
 
+
     return (
         <>
             <main className="flex justify-end bg-slate-100">
